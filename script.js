@@ -362,6 +362,33 @@ function initGalleryVideos() {
 }
 
 /* ============================================================
+   BOOKING WIDGET — load Calendly's script only once the booking
+   section is scrolled near; it eagerly renders/resizes its iframe
+   the moment it loads, which can yank iOS Safari's scroll position
+   toward it if loaded upfront on page load
+   ============================================================ */
+function initBookingWidget() {
+  const widget = document.querySelector(".calendly-inline-widget");
+  if (!widget) return;
+  const load = () => {
+    if (document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) return;
+    const s = document.createElement("script");
+    s.src = "https://assets.calendly.com/assets/external/widget.js";
+    s.async = true;
+    document.body.appendChild(s);
+  };
+  if (!("IntersectionObserver" in window)) { load(); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      load();
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: "300px 0px" });
+  io.observe(widget);
+}
+
+/* ============================================================
    PHOTO SLOTS — catch already-cached 404s missed by inline onerror
    ============================================================ */
 function initPhotoSlots() {
@@ -391,6 +418,7 @@ function initAll() {
   initStatusPulse();
   initFooter();
   initPhotoSlots();
+  initBookingWidget();
   ScrollTrigger.refresh();
 }
 
