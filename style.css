@@ -143,7 +143,7 @@ section { position: relative; overflow: hidden; }
 .nav-cta { white-space: nowrap; }
 
 .nav-hamburger {
-  display: none; width: 38px; height: 38px;
+  display: none; width: 44px; height: 44px;
   flex-direction: column; align-items: center; justify-content: center; gap: 6px;
 }
 .nav-hamburger span { width: 22px; height: 1px; background: var(--text); transition: transform 0.3s ease, opacity 0.3s ease; }

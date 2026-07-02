@@ -115,12 +115,15 @@
   <!-- ─── HERO ─────────────────────────────────────── -->
   <section class="hero" aria-label="Hero">
     <div class="hero-bg photo-slot" data-label="Hero Background — placeholder, swap for a wide storefront/interior or hero-style action shot">
+      <img src="img/hero-bg.jpg" alt="JCM Barbershop" fetchpriority="high" decoding="async"
+        onerror="this.closest('.photo-slot').classList.add('img-missing')">
       <!-- Two crops of the same footage: hero-loop-desktop.mp4 is cropped landscape-friendly for wide
            screens, hero-loop.mp4 is the portrait crop for narrow/phone screens. JS picks one at init
-           based on viewport width (see initHeroVideo in script.js) so the subject stays in frame either way. -->
-      <video class="hero-video" autoplay muted loop playsinline aria-hidden="true"
-        data-src-desktop="assets/video/hero-loop-desktop.mp4" data-src-mobile="assets/video/hero-loop.mp4"
-        onerror="this.remove()">
+           based on viewport width (see initHeroVideo in script.js) so the subject stays in frame either way.
+           If the video can't load or stalls, script.js falls back to the image above instead of leaving
+           a blank hero. -->
+      <video class="hero-video" autoplay muted loop playsinline aria-hidden="true" poster="img/hero-bg.jpg"
+        data-src-desktop="assets/video/hero-loop-desktop.mp4" data-src-mobile="assets/video/hero-loop.mp4">
       </video>
       <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 1<br>Hero Background<br><small>2400&times;1600px</small></span>
     </div>
@@ -293,7 +296,7 @@
       <div class="barber-photo-wrap" data-reveal>
         <div class="photo-slot barber-photo" data-label="INSERT JCM PHOTO 2 — Barber Portrait, square crop">
           <!-- REPLACE WITH REAL JCM PHOTO: barber portrait, square crop ~1200x1200px -->
-          <img alt="Placeholder barber portrait — replace with real JCM Barbershop photo" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder barber portrait — replace with real JCM Barbershop photo" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
           <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 2<br>Barber Portrait<br><small>1200&times;1200px square</small></span>
         </div>
         <div class="barber-photo-frame" aria-hidden="true"></div>
@@ -325,7 +328,7 @@
     <div class="gallery-grid container" id="galleryGrid">
       <div class="photo-slot gallery-item gallery-item-video" data-label="Gallery 1 — real JCM work">
         <div class="kb-wrap">
-          <img src="assets/img/gallery-vid-1-poster.jpg" alt="JCM Barbershop client fade, video still loading" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img src="assets/img/gallery-vid-1-poster.jpg" alt="JCM Barbershop client fade, video still loading" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
           <video class="gallery-video" muted loop playsinline preload="none" aria-hidden="true"
             data-src="assets/video/gallery-vid-1.mp4" onerror="this.remove()">
           </video>
@@ -334,7 +337,7 @@
       </div>
       <div class="photo-slot gallery-item gallery-item-video" data-label="Gallery 3 — real JCM work">
         <div class="kb-wrap">
-          <img src="assets/img/gallery-vid-3-poster.jpg" alt="JCM Barbershop client fade, video still loading" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img src="assets/img/gallery-vid-3-poster.jpg" alt="JCM Barbershop client fade, video still loading" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
           <video class="gallery-video" muted loop playsinline preload="none" aria-hidden="true"
             data-src="assets/video/gallery-vid-3.mp4" onerror="this.remove()">
           </video>
@@ -344,7 +347,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 6 — Gallery 4">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 4, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 4 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 4 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 6<br><small>1080&times;1080px</small></span>
@@ -352,7 +355,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 7 — Gallery 5">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 5, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 5 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 5 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 7<br><small>1080&times;1080px</small></span>
@@ -360,7 +363,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 8 — Gallery 6">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 6, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 6 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 6 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 8<br><small>1080&times;1080px</small></span>
@@ -368,7 +371,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 9 — Gallery 7">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 7, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 7 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 7 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 9<br><small>1080&times;1080px</small></span>
@@ -376,7 +379,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 10 — Gallery 8">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 8, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 8 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 8 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 10<br><small>1080&times;1080px</small></span>
@@ -384,7 +387,7 @@
       <div class="photo-slot gallery-item" data-label="INSERT JCM PHOTO 11 — Gallery 9">
         <div class="kb-wrap">
           <!-- REPLACE WITH REAL JCM PHOTO: gallery shot 9, ~1080x1080px square -->
-          <img alt="Placeholder gallery photo 9 — replace with real JCM Barbershop work" onerror="this.closest('.photo-slot').classList.add('img-missing')">
+          <img alt="Placeholder gallery photo 9 — replace with real JCM Barbershop work" loading="lazy" decoding="async" onerror="this.closest('.photo-slot').classList.add('img-missing')">
         </div>
         <div class="gallery-item-glow" aria-hidden="true"></div>
         <span class="ph-label" aria-hidden="true">INSERT JCM PHOTO 11<br><small>1080&times;1080px</small></span>

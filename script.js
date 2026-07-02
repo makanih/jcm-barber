@@ -331,12 +331,32 @@ function initVideoSlot(container, video, { skipMobile = false } = {}) {
   } else if (video.dataset.src) {
     video.src = video.dataset.src;
   }
+
+  // Falling back removes the video AND clears "video-ready" so the poster/fallback
+  // <img> (still sitting underneath, per the CSS crossfade) becomes visible again —
+  // previously the class stuck around, leaving a blank hero if playback died mid-way.
+  let stallTimer = null;
+  const fallbackToImage = () => {
+    clearTimeout(stallTimer);
+    container.classList.remove("video-ready");
+    video.remove();
+  };
+  // On mobile connections a video can start fine, then stall mid-buffer without ever
+  // firing a hard "error" — this is what caused "plays for a bit then just stops".
+  // Give it a grace window to recover before giving up on it.
+  const armStallTimer = () => {
+    clearTimeout(stallTimer);
+    stallTimer = setTimeout(fallbackToImage, 6000);
+  };
+
+  video.addEventListener("loadeddata", () => container.classList.add("video-ready"));
+  video.addEventListener("playing", () => clearTimeout(stallTimer));
+  video.addEventListener("waiting", armStallTimer);
+  video.addEventListener("stalled", armStallTimer);
+  video.addEventListener("error", fallbackToImage);
+
   video.load();
-  const reveal = () => container.classList.add("video-ready");
-  if (video.readyState >= 2) reveal();
-  else video.addEventListener("loadeddata", reveal, { once: true });
-  video.addEventListener("error", () => video.remove());
-  video.play().catch(() => video.remove());
+  video.play().catch(fallbackToImage);
 }
 
 function initHeroVideo() {
